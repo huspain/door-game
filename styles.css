@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+
+*, *::before, *::after {
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.container {
+    margin: auto;
+    background: #333333;
+    padding: 40px;
+    color: #fff;
+    box-shadow: #333 0 0 20px;
+}
+#stage {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+#stage:before {
+    content:'Current Stage: '
+}
+#door {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+#door:before {
+    content:'Current Door: '
+}
+#question {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
