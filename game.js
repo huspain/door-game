@@ -8,7 +8,10 @@ const textElement = document.getElementById('stage');
 let state = {}
 
 var passIndex = 0;
-//List of all atriums and doors within them (options)
+
+
+
+////////////// ATRIUM NODES //////////////
 const atriumNodes = [
     {
         id: 1,
@@ -122,6 +125,8 @@ const atriumNodes = [
         ]
     } 
 ]
+///////////// ATRIUM NODES END ///////////////////
+
 
 //Starts the game fresh with the original parameters defined above
 function startGame() {
