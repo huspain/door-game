@@ -92,7 +92,7 @@ const atriumNodes = [
         stage: "Success!!!",
         options: [
             {
-                text: 'Restart Game',
+                text: 'Now what?',
                 passed: false,
                 setState: { death: false },
                 nextAtrium: -1
