@@ -1,16 +1,3 @@
-// HTML element that states the list of options
-const optionsContainer = document.getElementById('options-container');
-
-// HTML element that states the current stage
-const textElement = document.getElementById('stage');
-
-// General parameter for game states
-let state = {}
-
-var passIndex = 0;
-
-
-
 ////////////// ATRIUM NODES //////////////
 const atriumNodes = [
     {
@@ -127,6 +114,21 @@ const atriumNodes = [
 ]
 ///////////// ATRIUM NODES END ///////////////////
 
+// HTML element that states the list of options
+const optionsContainer = document.getElementById('options-container');
+
+// HTML element that states the current stage
+const textElement = document.getElementById('stage');
+
+// General parameter for game states
+let state = {}
+
+//Explored atrium element
+const gameLog = document.getElementById('explored');
+
+//Passindex for respawning
+var passIndex = 0;
+
 
 //Starts the game fresh with the original parameters defined above
 function startGame() {
@@ -145,18 +147,22 @@ function showAtriumNode(atriumNodeIndex) {
     var length = atriumNode.options.length;
     passIndex = 0;
     atriumNode.options.forEach(option => {
+        const button = document.createElement('button');
+        button.innerText = option.text;
+        button.classList.add('btn');
+        button.addEventListener('click', () => selectOption(option, atriumNode));
+        optionsContainer.appendChild(button);
+
         if (showOption(option)) {
-            const button = document.createElement('button');
-            button.innerText = option.text;
-            button.classList.add('btn');
-            button.addEventListener('click', () => selectOption(option));
-            optionsContainer.appendChild(button);
+            button.style.pointerEvents = "auto";
         }
         else {
             passIndex = passIndex + 1;
+            button.style.pointerEvents = "none";
+            button.style.backgroundColor = "red";
         }
     })
-    console.log(passIndex);
+    
     if (passIndex >= length) {
         showAtriumNode(atriumNodeIndex + 1);
     }
@@ -167,8 +173,13 @@ function showOption(option, passIndex) {
         return  true;
     }
 }
-function selectOption(option) {
+function selectOption(option, atriumNode) {
     var nextAttriumNodeId = option.nextAtrium;
+    var atriumInfo = document.createElement('p');
+
+    atriumInfo.innerHTML = "<strong>"+atriumNode.stage+"</strong>" + ": " + option.text;
+    gameLog.appendChild(atriumInfo);
+    console.log(atriumInfo);
 
     state = Object.assign(state, option.setState);
 
